@@ -14,20 +14,28 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ClaimConditionsImpl implements ClaimConditions {
 
-	public static boolean contradictions() {
+	List<Benefit> benifitsLst = List.of(new Benefit("123", "attack"), new Benefit("221", "stroke"));
+	List<ClaimDetails> claimLst = List
+			.of(new ClaimDetails("C123", "", "the Claim", "remarks", 1234, "H123", "123", "P123", "M123"));
+	List<Hospital> hospitalLst = List.of(new Hospital("H123", "Hostpital1", "loc1"));
+	
+	@Override
+	public  boolean contradictions(int amount,int benifits,int provider) {
 		// code goes here
-
-		return false;
+		int cmpAmount=-1;
+		int cmpBenifits=-1;// To be fetched from the database
+		int cmpPermissableProvider=-1;
+		if(cmpAmount==-1 && cmpBenifits==-1 && cmpPermissableProvider==-1) {
+			return false;
+		}
+		return true;
 	}
 	/*
-	 * will write the actual code to check for the conditions reuired and fetch it
+	 * will write the actual code to check for the conditions required and fetch it
 	 * to give a appropriate results for now the results are hard coded
 	 */
 
-	// -1 for empty, 0 for flase, 1 for true
-	List<Benefit> benifits = List.of(new Benefit("123", "attack"), new Benefit("221", "stroke"));
-	List<ClaimDetails> claim = List.of(new ClaimDetails("C123","","the Claim","remarks",1234,"H123","123","P123","M123"));
-	List<Hospital> hospital=List.of(new Hospital("H123","Hostpital1","loc1"));
+	// -1 for empty, 0 for false, 1 for true
 
 	@Override
 	public String status() {
@@ -41,7 +49,7 @@ public class ClaimConditionsImpl implements ClaimConditions {
 			res = "Pending Action";
 		} else if (amount == -1 || benifits == -1 || permissableProvider == -1) {
 			res = "Insufficient Claim Details";
-			if (contradictions()) {
+			if (contradictions(amount,benifits,permissableProvider)) {
 				res = "Under Dispute";
 			}
 		} else {
