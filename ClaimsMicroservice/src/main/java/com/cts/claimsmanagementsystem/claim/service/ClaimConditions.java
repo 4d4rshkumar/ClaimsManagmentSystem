@@ -8,10 +8,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ClaimConditions {
 
-	public static boolean contradictions() {
+	public static boolean contradictions(int amount,int benifits,int provider) {
 		// code goes here
-
-		return false;
+		int cmp_amount=-1;
+		int cmp_benifits=-1;// To be fetched from the database
+		int cmp_permissableProvider=-1;
+		if(cmp_amount==-1 && cmp_benifits==-1 && cmp_permissableProvider==-1) {
+			return false;
+		}
+		else {
+		return true;
+		}
 	}
 	/*
 	 * will write the actual code to check for the conditions reuired and fetch it
@@ -30,7 +37,7 @@ public class ClaimConditions {
 			res = "Pending Action";
 		} else if (amount == -1 || benifits == -1 || permissableProvider == -1) {
 			res = "Insufficient Claim Details";
-			if (contradictions()) {
+			if (contradictions(amount,benifits,permissableProvider)) {
 				res = "Under Dispute";
 			}
 		} else {
