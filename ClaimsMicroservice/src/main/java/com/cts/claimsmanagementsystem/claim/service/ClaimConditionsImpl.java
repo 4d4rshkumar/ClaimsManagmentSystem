@@ -4,9 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.cts.claimsmanagementsystem.claim.entity.Benefit;
-import com.cts.claimsmanagementsystem.claim.entity.ClaimDetails;
-import com.cts.claimsmanagementsystem.claim.entity.Hospital;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,11 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ClaimConditionsImpl implements ClaimConditions {
 
-	List<Benefit> benifitsLst = List.of(new Benefit("123", "attack"), new Benefit("221", "stroke"));
-	List<ClaimDetails> claimLst = List
-			.of(new ClaimDetails("C123", "", "the Claim", "remarks", 1234, "H123", "123", "P123", "M123"));
-	List<Hospital> hospitalLst = List.of(new Hospital("H123", "Hostpital1", "loc1"));
-	
 	@Override
 	public  boolean contradictions(int amount,int benifits,int provider) {
 		// code goes here
